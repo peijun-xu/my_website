@@ -38,7 +38,7 @@ disqusShortname = ""
   # Navigation Section
   [params.navigation]
     title = "Peijun Xu"
-    subtitle = "Hello"
+    subtitle = "Portfolio Website"
     menu = "Menu"
     # Optional logo as brand stored in img/
     # logo = "logo.png"
@@ -92,10 +92,10 @@ disqusShortname = ""
     # Display your showcases here.
     
     [[params.tiles.showcase]]
-      title = "Aliquam"
-      subtitle = "Ipsum Dolor Sit Amet"
+      title = "NYT Masks"
+      subtitle = "How does mask use acceptance vary in the US?"
       image = "pic01.jpg"
-      url = "blogs/aliquam"
+      url = "blogs/blog5"
 
     [[params.tiles.showcase]]
       title = "Tempus"
@@ -174,9 +174,9 @@ disqusShortname = ""
     title = "Email"
     email = "pxu.mam2021@london.edu"
 
-    [[params.contact.phone]]
-    title = "Phone"
-    phone = "(86) 188 6810 9874"
+    #[[params.contact.phone]]
+    #title = "Phone"
+    #phone = "(86) 188 6810 9874"
 
     [[params.contact.address]]
     title = "Address"
