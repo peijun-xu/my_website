@@ -98,10 +98,10 @@ disqusShortname = ""
       url = "blogs/blog5"
 
     [[params.tiles.showcase]]
-      title = "Tempus"
-      subtitle = "Feugiat Amet Tempus"
+      title = "IMDB Analysis"
+      subtitle = "What leads to high revenue in the box office?"
       image = "pic02.jpg"
-      url = "blogs/tempus"
+      url = "blogs/imdb"
 
     [[params.tiles.showcase]]
       title = "Magna"

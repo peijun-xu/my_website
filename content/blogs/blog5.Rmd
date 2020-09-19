@@ -36,6 +36,7 @@ library(skimr)
 library(vroom)
 library(mosaic)
 library(here)
+library(kableExtra)
 
 #remotes::install_github("kjhealy/socviz")
 library(socviz)
