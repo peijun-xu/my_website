@@ -13,7 +13,7 @@ title: Tracking Trump's Approval
 
 
 
-<p>As we saw in class, fivethirtyeight.com has detailed data on <a href="https://projects.fivethirtyeight.com/trump-approval-ratings">all polls that track the president’s approval</a></p>
+<p>To get the dataset, fivethirtyeight.com has detailed data on <a href="https://projects.fivethirtyeight.com/trump-approval-ratings">all polls that track the president’s approval</a></p>
 <pre class="r"><code># Import approval polls data
 # approval_polllist &lt;- read_csv(here::here(&#39;data&#39;, &#39;approval_polllist.csv&#39;))
 
@@ -46,10 +46,9 @@ glimpse(approval_polllist)</code></pre>
 ## $ createddate         &lt;chr&gt; &quot;1/23/2017&quot;, &quot;1/23/2017&quot;, &quot;3/1/2017&quot;, &quot;1/24/201...
 ## $ timestamp           &lt;chr&gt; &quot;17:01:19 18 Sep 2020&quot;, &quot;17:01:19 18 Sep 2020&quot;,...</code></pre>
 <pre class="r"><code># Use `lubridate` to fix dates, as they are given as characters.</code></pre>
-<div id="create-a-plot" class="section level2">
-<h2>Create a plot</h2>
-<p>What I would like you to do is to calculate the average net approval rate (approve- disapprove) for each week since he got into office. I want you plot the net approval, along with its 95% confidence interval. There are various dates given for each poll, please use <code>enddate</code>, i.e., the date the poll ended.</p>
-<p>You can facet by year, and add an orange line at zero. Your plot should look like this:</p>
+<div id="create-a-plot" class="section level1">
+<h1>Create a plot</h1>
+<p>Calculate the average net approval rate (approve- disapprove) for each week since he got into office. I want you plot the net approval, along with its 95% confidence interval.</p>
 <pre class="r"><code>net_approval_plot &lt;- approval_polllist %&gt;%
   filter(subgroup == &quot;Voters&quot;) %&gt;%
   mutate(date = mdy(enddate),
@@ -82,12 +81,8 @@ glimpse(approval_polllist)</code></pre>
 net_approval_plot</code></pre>
 <p><img src="/blogs/trump_files/figure-html/trump_margins-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
-<div id="compare-confidence-intervals" class="section level2">
-<h2>Compare Confidence Intervals</h2>
-<p>Compare the confidence intervals for <code>week 15</code> (6-12 April 2020) and <code>week 34</code> (17-23 August 2020). Can you explain what’s going on? One paragraph would be enough.</p>
-<blockquote>
-<p>Answer</p>
-</blockquote>
+<div id="compare-confidence-intervals" class="section level1">
+<h1>Compare Confidence Intervals</h1>
 <ul>
 <li>The confidence interval for ‘week 15’ is [-9.93, -6.197], and for ‘week 34’ it is a wider [-12.26, -7.553], indicating that the deviation of Trump’s polls became larger from April to August. This may be ralated to the mixed reviews he received in the handling of domestic issues, such as COVID-19 and Black Lives Matter.</li>
 </ul>

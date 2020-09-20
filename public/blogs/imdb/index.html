@@ -54,10 +54,6 @@
             
                 <li><a href="/blogs">Blogs</a></li>
             
-                <li><a href="/blogs/ipsum">Generic Blog</a></li>
-            
-                <li><a href="/elements.html">Elements</a></li>
-            
 
         </ul>
         <ul class="actions vertical">
@@ -85,19 +81,6 @@
                             
 
 
-<pre class="r"><code>knitr::opts_chunk$set(
-  message = FALSE, 
-  warning = FALSE, 
-  tidy=FALSE,     # display code as typed
-  size=&quot;small&quot;)   # slightly smaller font for code
-options(digits = 3)
-
-# default figure size
-knitr::opts_chunk$set(
-  fig.width=6.75, 
-  fig.height=6.75,
-  fig.align = &quot;center&quot;
-)</code></pre>
 <pre><code>## Rows: 2,961
 ## Columns: 11
 ## $ title               &lt;chr&gt; &quot;Avatar&quot;, &quot;Titanic&quot;, &quot;Jurassic World&quot;, &quot;The Ave...
@@ -111,8 +94,6 @@ knitr::opts_chunk$set(
 ## $ votes               &lt;dbl&gt; 886204, 793059, 418214, 995415, 1676169, 534658...
 ## $ reviews             &lt;dbl&gt; 3777, 2843, 1934, 2425, 5312, 3917, 1752, 1752,...
 ## $ rating              &lt;dbl&gt; 7.9, 7.7, 7.0, 8.1, 9.0, 6.5, 8.7, 7.5, 8.5, 7....</code></pre>
-<div id="use-your-data-import-inspection-and-cleaning-skills-to-answer-the-following" class="section level2">
-<h2>Use your data import, inspection, and cleaning skills to answer the following:</h2>
 <ul>
 <li>Produce a table with the count of movies by genre, ranked in descending order</li>
 </ul>
@@ -135,6 +116,7 @@ ggplot(genre_count) +
   theme(axis.line = element_line(colour = &quot;black&quot;, 
                       size = 1, linetype = &quot;solid&quot;))</code></pre>
 <p><img src="/blogs/imdb_files/figure-html/kable_movies_by_genre-1.png" width="648" style="display: block; margin: auto;" /></p>
+<p>We can see that comedy, action, and drama movies lead in the amount. After all, who does not want to go to the cinema in a nice Friday night after a whole week of busy working and buy some happiness?</p>
 <ul>
 <li>Produce a table with the average gross earning and budget (<code>gross</code> and <code>budget</code>) by genre.
 Calculate a variable <code>return_on_budget</code> which shows how many $ did a movie make at the box office for each $ of its budget. Ranked genres by this <code>return_on_budget</code> in descending order</li>
@@ -162,6 +144,7 @@ avg_genre &lt;- movies %&gt;%
 
 avg_genre</code></pre>
 <p><img src="/blogs/imdb_files/figure-html/average_gross_and_budget_by_genre-1.png" width="648" style="display: block; margin: auto;" /></p>
+<p>Interestingly, musical movie gets the highest return rate. The data set of musical movies is rather small, and the cost of musical movies are usually not very large.</p>
 <ul>
 <li>Produce a table that shows the top 15 directors who have created the highest gross revenue in the box office. Don’t just show the total gross amount, but also the mean, median, and standard deviation per director.</li>
 </ul>
@@ -187,262 +170,10 @@ top15_directors &lt;- movies %&gt;% group_by(director) %&gt;%
                       size = 1, linetype = &quot;solid&quot;))
 
 top15_directors</code></pre>
-<p><img src="/blogs/imdb_files/figure-html/top15_directors-1.png" width="648" style="display: block; margin: auto;" /></p>
+<p><img src="/blogs/imdb_files/figure-html/top15_directors-1.png" width="648" style="display: block; margin: auto;" />
+Spielberg is without doubt the most successful commercial movie director in terms of box office. In fact, all the top 15 directors are all famous Hollywood commercial movie directors.</p>
 <ul>
-<li>Finally, ratings. Produce a table that describes how ratings are distributed by genre. We don’t want just the mean, but also, min, max, median, SD and some kind of a histogram or density graph that visually shows how ratings are distributed.</li>
-</ul>
-<p>Histogram Graph:</p>
-<pre class="r"><code>ratings_table &lt;- movies %&gt;% #Assigned the requested variables to ratings table
-  group_by(genre) %&gt;%
-  summarise(mean_rating = mean(rating),
-            median_rating = median(rating),
-            sd_rating = sd(rating),
-            min_rating = min(rating),
-            max_rating = max(rating))
-
-rating_graph &lt;- ggplot(ratings_table, aes(#Used ratings table to plot graph
-  x = reorder(genre, -mean_rating), #reordered genre by descendin mean rating
-  y = mean_rating
-  )) +
-  geom_col(width=0.7, position=position_dodge(width=0.8)) +
-  labs(
-    x = &quot;Genre&quot;, 
-    y = &quot;Mean Ratings&quot;, 
-    title = &quot;Ratings by Genre&quot;) +
-  theme_minimal() +
-  theme(text = element_text(size=40))+
-  NULL</code></pre>
-<pre class="r"><code>skim(movies)</code></pre>
-<table>
-<caption>(#tab:skim_movies)Data summary</caption>
-<tbody>
-<tr class="odd">
-<td align="left">Name</td>
-<td align="left">movies</td>
-</tr>
-<tr class="even">
-<td align="left">Number of rows</td>
-<td align="left">2961</td>
-</tr>
-<tr class="odd">
-<td align="left">Number of columns</td>
-<td align="left">11</td>
-</tr>
-<tr class="even">
-<td align="left">_______________________</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Column type frequency:</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">character</td>
-<td align="left">3</td>
-</tr>
-<tr class="odd">
-<td align="left">numeric</td>
-<td align="left">8</td>
-</tr>
-<tr class="even">
-<td align="left">________________________</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Group variables</td>
-<td align="left">None</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: character</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">min</th>
-<th align="right">max</th>
-<th align="right">empty</th>
-<th align="right">n_unique</th>
-<th align="right">whitespace</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">title</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">83</td>
-<td align="right">0</td>
-<td align="right">2907</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">genre</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">11</td>
-<td align="right">0</td>
-<td align="right">17</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">director</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="right">32</td>
-<td align="right">0</td>
-<td align="right">1366</td>
-<td align="right">0</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: numeric</strong></p>
-<table>
-<colgroup>
-<col width="15%" />
-<col width="7%" />
-<col width="11%" />
-<col width="9%" />
-<col width="9%" />
-<col width="5%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="9%" />
-<col width="4%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right">p0</th>
-<th align="right">p25</th>
-<th align="right">p50</th>
-<th align="right">p75</th>
-<th align="right">p100</th>
-<th align="left">hist</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">year</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2002.90</td>
-<td align="right">9.95</td>
-<td align="right">1920.0</td>
-<td align="right">1999.0</td>
-<td align="right">2004.0</td>
-<td align="right">2010.0</td>
-<td align="right">2016.0</td>
-<td align="left">▁▁▁▂▇</td>
-</tr>
-<tr class="even">
-<td align="left">duration</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">109.65</td>
-<td align="right">22.17</td>
-<td align="right">37.0</td>
-<td align="right">95.0</td>
-<td align="right">106.0</td>
-<td align="right">119.0</td>
-<td align="right">330.0</td>
-<td align="left">▃▇▁▁▁</td>
-</tr>
-<tr class="odd">
-<td align="left">gross</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">58090400.90</td>
-<td align="right">72469621.94</td>
-<td align="right">703.0</td>
-<td align="right">12276810.0</td>
-<td align="right">34703228.0</td>
-<td align="right">75590286.0</td>
-<td align="right">760505847.0</td>
-<td align="left">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td align="left">budget</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">40619384.06</td>
-<td align="right">43682007.78</td>
-<td align="right">218.0</td>
-<td align="right">11000000.0</td>
-<td align="right">26000000.0</td>
-<td align="right">55000000.0</td>
-<td align="right">300000000.0</td>
-<td align="left">▇▂▁▁▁</td>
-</tr>
-<tr class="odd">
-<td align="left">cast_facebook_likes</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">12393.76</td>
-<td align="right">20530.11</td>
-<td align="right">0.0</td>
-<td align="right">2241.0</td>
-<td align="right">4604.0</td>
-<td align="right">16926.0</td>
-<td align="right">656730.0</td>
-<td align="left">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td align="left">votes</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">109307.49</td>
-<td align="right">158143.91</td>
-<td align="right">5.0</td>
-<td align="right">19918.0</td>
-<td align="right">55749.0</td>
-<td align="right">133348.0</td>
-<td align="right">1689764.0</td>
-<td align="left">▇▁▁▁▁</td>
-</tr>
-<tr class="odd">
-<td align="left">reviews</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">503.31</td>
-<td align="right">493.74</td>
-<td align="right">2.0</td>
-<td align="right">199.0</td>
-<td align="right">364.0</td>
-<td align="right">631.0</td>
-<td align="right">5312.0</td>
-<td align="left">▇▁▁▁▁</td>
-</tr>
-<tr class="even">
-<td align="left">rating</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">6.39</td>
-<td align="right">1.05</td>
-<td align="right">1.6</td>
-<td align="right">5.8</td>
-<td align="right">6.5</td>
-<td align="right">7.1</td>
-<td align="right">9.3</td>
-<td align="left">▁▁▆▇▁</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="use-ggplot-to-answer-the-following" class="section level2">
-<h2>Use <code>ggplot</code> to answer the following</h2>
-<ul>
-<li>Examine the relationship between <code>gross</code> and <code>cast_facebook_likes</code>. Produce a scatterplot and write one sentence discussing whether the number of facebook likes that the cast has received is likely to be a good predictor of how much money a movie will make at the box office. What variable are you going to map to the Y- and X- axes?</li>
+<li>The relationship between <code>gross</code> and <code>cast_facebook_likes</code>.</li>
 </ul>
 <pre class="r"><code>gross_on_fblikes &lt;- ggplot(movies, aes(x = cast_facebook_likes, y = gross)) + #chose likes on the x-axis, because hypothetically likes influence gross sales and not the other way around
   geom_point(alpha = 0.2) + 
@@ -458,12 +189,11 @@ rating_graph &lt;- ggplot(ratings_table, aes(#Used ratings table to plot graph
   NULL
 
 gross_on_fblikes</code></pre>
-<p><img src="/blogs/imdb_files/figure-html/gross_on_fblikes-1.png" width="648" style="display: block; margin: auto;" />
-&gt;Answer</p>
+<p><img src="/blogs/imdb_files/figure-html/gross_on_fblikes-1.png" width="648" style="display: block; margin: auto;" /></p>
 <ul>
 <li><p>We use “cast_facebook_likes” to map the the X-axes and “gross” to map the Y-axes.</p></li>
 <li><p>The number of facebook likes that the cast has received can predicts the gross box office. The more facebook likes the movie’s cast receives, the more money it will make. However, the positive correlation is not very strong, since given the same “cast_facebook_likes”, the deviation of “gross” is quite large, which makes the fitted correlation contain large errors.</p></li>
-<li><p>Examine the relationship between <code>gross</code> and <code>budget</code>. Produce a scatterplot and write one sentence discussing whether budget is likely to be a good predictor of how much money a movie will make at the box office.</p></li>
+<li><p>The relationship between <code>gross</code> and <code>budget</code>.</p></li>
 </ul>
 <pre class="r"><code>gross_on_budget &lt;- ggplot(movies, aes(
   x = budget, 
@@ -482,11 +212,10 @@ gross_on_fblikes</code></pre>
   NULL
 
 gross_on_budget</code></pre>
-<p><img src="/blogs/imdb_files/figure-html/gross_on_budget-1.png" width="648" style="display: block; margin: auto;" />
-&gt;Answer</p>
+<p><img src="/blogs/imdb_files/figure-html/gross_on_budget-1.png" width="648" style="display: block; margin: auto;" /></p>
 <p>Budget is likely to be a good predictor, since most of the data points are distributed closely near to the fitted line, especially in the upper right corner of the plot.</p>
 <ul>
-<li>Examine the relationship between <code>gross</code> and <code>rating</code>. Produce a scatterplot, faceted by <code>genre</code> and discuss whether IMDB ratings are likely to be a good predictor of how much money a movie will make at the box office. Is there anything strange in this dataset?</li>
+<li>Tthe relationship between <code>gross</code> and <code>rating</code>.</li>
 </ul>
 <pre class="r"><code>gross_on_rating_plot &lt;-ggplot(movies %&gt;% 
   distinct(), #Used distinct function to remove duplicate rows                               
@@ -508,13 +237,11 @@ gross_on_budget</code></pre>
   NULL
 
 gross_on_rating_plot</code></pre>
-<p><img src="/blogs/imdb_files/figure-html/gross_on_rating-1.png" width="648" style="display: block; margin: auto;" />
-&gt;Answer</p>
+<p><img src="/blogs/imdb_files/figure-html/gross_on_rating-1.png" width="648" style="display: block; margin: auto;" /></p>
 <ul>
 <li>For action, adventure, animation, biography, fantasy, and horror movies, IMDB ratings are good predictors, since the distance between data points and the fitted line are rather short, which means the fitted line contains less errors. While for comedy, crime, drama and Sci-Fi movies, the correlation between two variables are rather weak. For some genres, the data are not abundant enough to prove correlations (i.e. family, musical, romance, thriller and western).</li>
 <li>There is something strange in this dataset. Some entries are almost the same to each other(titles, directors, year, etc. are all the same) except for votes.</li>
 </ul>
-</div>
 
                         </div>
                     </section>

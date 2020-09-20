@@ -33,44 +33,7 @@ library(leaflet)
 library(kableExtra)
 ```
 
-# Introduction
-
-Copenhagen, the happiest city in the world, Who doesn't want to go there! Happiness comes at a price though, you'll need to find a place to stay. What better way to look for a place to stay than on AirBnB and us being students, would like to know what this will cost us. This is where the MAM program from LBS is already paying itself off. To find out what variables (e.g. room type, property type) influence the price most so we can predict the cost with a regression analysis. So our dream holiday can become reality.
-
-The data we will be using for this comes directly from AirBnB. In this analysis we will only be using data on the city of Copenhagen. the data shows the listings as per June 26th 2020.
-
-This analysis is divided into 4 parts:
-
-1.    Executive summary
-1.    Exploratory data analysis
-1.    Regression analysis
-1.    Conclusion
-
-# Executive summary
-
-Using AirBnB data for listings at the time of June 26th 2020, we predicted the costs of a stay in Copenhagen. The requirements were 4 nights with 2 persons, a private room and a minimum review score of 90 with at least 10 reviews. Our method was to run and exploratory data analysis to set the scene for the data that we would use to make our prediction. Once we had confirmed the important values that could have a significant influence on the price. we identified the following variables:
-
--   property type
--   number of reviews
--   review score
--   room type
--   bathrooms
--   bedrooms
--   accommodates
--   neighborhood
--   cancellation policy
--   Superhost
-
-After running regression models with these variables we came to a model that had the most prediction power, model 7. With the specified criteria we made a prediction with 95% confidence that the cost for a median listing on Airbnb in Copenhagen is between 1,860.18 DKK and 1,938.58 DKK.
-             
-# Exploratory data analysis
-To get an idea of the data structure, an exploratory data analysis is conducted. The first steps are to look at the raw values and to clean the data afterwards. This gives a foundation to use in summary statistics. Finally, visualisations will give an impression of any correlations in variables and will give an outlook on variables that stand out.
-
-## Looking at the raw values
-
-First of all, the data needs to be loaded. The clean_names() function is used to make the values consistent and neat, to help with the data wrangling.
-
-```{r cars, cache=TRUE}
+```{r cars, cache=TRUE, echo = FALSE}
 
 listings <- vroom("http://data.insideairbnb.com/denmark/hovedstaden/copenhagen/2020-06-26/data/listings.csv.gz") %>%
   
@@ -79,7 +42,13 @@ listings <- vroom("http://data.insideairbnb.com/denmark/hovedstaden/copenhagen/2
   
 ```
 
-Having looked at the data, the following variables will be of importance throughout this analysis:
+# Introduction
+
+Copenhagen, the happiest city in the world, Who doesn't want to go there! Happiness comes at a price though, you'll need to find a place to stay. What better way to look for a place to stay than on AirBnB and us being students, would like to know what this will cost us. This is where the MAM program from LBS is already paying itself off. To do so, an exploratory data analysis is conducted. The first steps are to look at the raw values and to clean the data afterwards. This gives a foundation to use in summary statistics. Finally, visualisations will give an impression of any correlations in variables and will give an outlook on variables that stand out.
+
+The data we will be using for this comes directly from AirBnB. In this analysis we will only be using data on the city of Copenhagen. the data shows the listings as per June 26th 2020.
+
+The following variables will be of importance throughout this analysis:
 
 1.    price : cost per night
 
@@ -102,23 +71,7 @@ Having looked at the data, the following variables will be of importance through
 1.    neighborhood*: three variables on a few major neighborhoods in each city
 
 
-The next step is to check the data for the properties of the variables and if there are any missing or NA values that need to be addressed.
-
-```{r, exploration, echo = FALSE, cache = TRUE}
-
-# Look at the raw values
-glimpse(listings)
-
-
-# Compute summary statistics of the variables of interest, or find NAs
-skim(listings)
-
-```
-
-From this list can be concluded that there are 28,523 values for 106 variables. there are a couple of values that contain NA, 1 of them, cleaning_fee, stands out and is one of the variables that was flagged as important in this analysis. This will be addressed in the next section. Other variables that stand out are price, cleaning_fee and extra_people. these variables are stored as character values and need to have the $-sign removed to be stored as a numeric value. Since these variables will be used further in the analyis, this also will be resolved in the next section where we clean the data and run summary statistics.
-
-
-## Computing summary statistics of the variables of interest
+# Computing summary statistics of the variables of interest
 
 In this section we will clean the data and run summary statistics that will be visualised in the next section. First the values stored as characters are converted to numeric values and the $-sign removed.
 
@@ -216,21 +169,12 @@ listings_clean <- listings %>%
 
 ```
 
-Let's have a look at the data.
 
-```{r skim the new list}
-
-# Check if all the variables are in the correct type
-skim(listings_clean) 
-
-```
-
-
-## Visualisations
+# Visualisations
 
 Now that the data is clean, a selection of useful data has been made, and filtered to only feature our criteria for a short stay holiday listing, visualisations of data can be made. This lays the foundation of any correlations and questions the regression model will have to explain and answer.
 
-### location
+## location
 
 In order to get an idea on the concentration of apartment listings in the area of Copenhagen, we plotted a map showing the number of flat available for rent for 4 nights or less. We used clusters instead of point to make the map more readable and to get a better idea of the number of listings in each area.
 
@@ -251,6 +195,7 @@ listings_filtered_4nights %>%
                    )
   
 ```
+
 The map shows the number of available flats are located in the city center. The more we get away from the center the fewer the number of flats available.
 
 To gauge the price difference in each area in Copenhagen, we plotted a heatmap showing the more expensive areas in a brighter red colour. Also we plotted a bar chart to get an idea of the median price for each area. The reason for using median over mean is because the listings in Copenhagen have very extreme values and they skew the mean too much for certain areas.
@@ -270,6 +215,7 @@ leaflet() %>%
                    label = ~property_type,
                    color = ~qpal(price))
 ```
+
 We can conclude that the harbour area in Copehagen has the most expensive listings. Therefore we suspect that location will have a high coefficient when we will be running te regression models.
 
 
@@ -298,4 +244,5 @@ median_per_neighborhood %>%
   NULL
 
 ```
+
 The Indre By area in Copenhagen is the central harbour area and is the most expensive area for AirBnB prices. This confirms that the neighborhood variable will have a significant impact on the price variable.

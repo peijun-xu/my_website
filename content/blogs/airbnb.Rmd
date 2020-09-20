@@ -33,7 +33,7 @@ library(leaflet)
 library(kableExtra)
 ```
 
-```{r cars, cache=TRUE, echo = FALSE}
+```{r cars, cache=TRUE, echo = FALSE, message=FALSE}
 
 listings <- vroom("http://data.insideairbnb.com/denmark/hovedstaden/copenhagen/2020-06-26/data/listings.csv.gz") %>%
   
