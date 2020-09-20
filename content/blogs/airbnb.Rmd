@@ -33,6 +33,15 @@ library(leaflet)
 library(kableExtra)
 ```
 
+```{r cars, cache=TRUE, echo = FALSE}
+
+listings <- vroom("http://data.insideairbnb.com/denmark/hovedstaden/copenhagen/2020-06-26/data/listings.csv.gz") %>%
+  
+    # Get the listings for Copenhagen
+    clean_names() 
+  
+```
+
 # Introduction
 
 Copenhagen, the happiest city in the world, Who doesn't want to go there! Happiness comes at a price though, you'll need to find a place to stay. What better way to look for a place to stay than on AirBnB and us being students, would like to know what this will cost us. This is where the MAM program from LBS is already paying itself off. To do so, an exploratory data analysis is conducted. The first steps are to look at the raw values and to clean the data afterwards. This gives a foundation to use in summary statistics. Finally, visualisations will give an impression of any correlations in variables and will give an outlook on variables that stand out.
