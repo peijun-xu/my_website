@@ -17,7 +17,7 @@
       <pubDate>Sat, 19 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>/blogs/airbnb/</guid>
-      <description>## Rows: 28,523## Columns: 106## Delimiter: &amp;quot;,&amp;quot;## chr [45]: listing_url, name, summary, space, description, experiences_offered, neighborho...## dbl [40]: id, scrape_id, host_id, host_listings_count, host_total_listings_count, zipcode...## lgl [16]: thumbnail_url, medium_url, xl_picture_url, host_is_superhost, host_has_profile_...## date [ 5]: last_scraped, host_since, calendar_last_scraped, first_review, last_review## ## Use `spec()` to retrieve the guessed column specification## Pass a specification to the `col_types` argument to quiet this message## Warning in FUN(X[[i]], .</description>
+      <description>## Warning in FUN(X[[i]], ...): strings not representable in native encoding will## be translated to UTF-8## Warning in FUN(X[[i]], ...): unable to translate &amp;#39;&amp;lt;U+00C4&amp;gt;&amp;#39; to native encoding## Warning in FUN(X[[i]], ...): unable to translate &amp;#39;&amp;lt;U+00D6&amp;gt;&amp;#39; to native encoding## Warning in FUN(X[[i]], ...): unable to translate &amp;#39;&amp;lt;U+00E4&amp;gt;&amp;#39; to native encoding## Warning in FUN(X[[i]], .</description>
     </item>
     
     <item>
