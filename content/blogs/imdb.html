@@ -5,7 +5,7 @@ categories:
 date: "2020-09-19"
 description: What leads to high revenue in the box office?
 draft: false
-image: pic06.jpg
+image: dataset-original.jpg
 keywords: ""
 slug: imdb
 title: IMDB Analysis
@@ -58,8 +58,10 @@ ggplot(genre_count) +
     y = element_blank()
   ) +
   theme(panel.background = element_rect(&quot;#ffd700&quot;)) +
-  #theme(panel.grid = element_blank()) +
-  theme(plot.background = element_rect(&quot;#ffd700&quot;))</code></pre>
+  theme(panel.grid = element_blank()) +
+  theme(plot.background = element_rect(&quot;#ffd700&quot;)) +
+  theme(axis.line = element_line(colour = &quot;black&quot;, 
+                      size = 1, linetype = &quot;solid&quot;))</code></pre>
 <p><img src="/blogs/imdb_files/figure-html/kable_movies_by_genre-1.png" width="648" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Produce a table with the average gross earning and budget (<code>gross</code> and <code>budget</code>) by genre.
@@ -81,8 +83,10 @@ avg_genre &lt;- movies %&gt;%
     y = element_blank()
   ) +
   theme(panel.background = element_rect(&quot;#ffd700&quot;)) +
-  #theme(panel.grid = element_blank()) +
-  theme(plot.background = element_rect(&quot;#ffd700&quot;))
+  theme(panel.grid = element_blank()) +
+  theme(plot.background = element_rect(&quot;#ffd700&quot;)) +
+  theme(axis.line = element_line(colour = &quot;black&quot;, 
+                      size = 1, linetype = &quot;solid&quot;))
 
 avg_genre</code></pre>
 <p><img src="/blogs/imdb_files/figure-html/average_gross_and_budget_by_genre-1.png" width="648" style="display: block; margin: auto;" /></p>
@@ -105,8 +109,11 @@ top15_directors &lt;- movies %&gt;% group_by(director) %&gt;%
     y = element_blank()
   ) +
   theme(panel.background = element_rect(&quot;#ffd700&quot;)) +
-  #theme(panel.grid = element_blank()) +
-  theme(plot.background = element_rect(&quot;#ffd700&quot;))
+  theme(panel.grid = element_blank()) +
+  theme(plot.background = element_rect(&quot;#ffd700&quot;)) +
+  theme(axis.line = element_line(colour = &quot;black&quot;, 
+                      size = 1, linetype = &quot;solid&quot;))
+
 top15_directors</code></pre>
 <p><img src="/blogs/imdb_files/figure-html/top15_directors-1.png" width="648" style="display: block; margin: auto;" /></p>
 <ul>
