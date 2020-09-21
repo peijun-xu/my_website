@@ -10,7 +10,9 @@ keywords: ""
 slug: airbnb
 title: AirBnB in Copenhagen
 ---
-
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE)
+```
 
 ```{r load_packages, warning=FALSE, message=FALSE, echo=FALSE}
 list.of.packages <- c("ggplot2", "Rcpp", "tidyverse", "mosaic", "ggfortify", "moderndive", "janitor", "huxtable", "here", "broom", "skimr", "GGally", "car", "vroom", "kableExtra")
