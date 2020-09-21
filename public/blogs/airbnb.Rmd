@@ -119,24 +119,9 @@ listings <- listings %>%
   TRUE ~ "Other"
   ))
 
-# Check if all the variables are in the correct type
-skim(listings) 
-
 ```
 
-To only have a list of variables that will be used in the analysis, redundant variables are filtered out. As the analysis focuses on short holiday stays, the long stay listings need to be removed from the list. By looking at the minimum nights on the listings, it can be determined if these addresses are viable for short stays.
-
-```{r summarising minimum nights, echo=FALSE, message=FALSE}
-
-# Display table with the count in descending order for the minimum nights
-kbl(listings %>%     
-  group_by(minimum_nights) %>%
-  summarise(count= n()) %>%
-  arrange(desc(count))) %>%
-  kable_styling(bootstrap_options=c("striped","hover","condensed","responsive"))
-```
-
-In this summary it can be seen that after 5 minimum days the numbers of listing drop significantly.The majority of listings are within the 1 to 4 minimum days stay. Therefore this will give a good indication of the listings intended for short, holiday, stays. In the next section the data is filtered to only feature a minimum of 4 nights or less. Also, the variables that will be used in the analysis are selected, so to only have relevant variables left to make the analysis more concise and clear.
+The majority of listings are within the 1 to 4 minimum days stay. Therefore this will give a good indication of the listings intended for short, holiday, stays. In the next section the data is filtered to only feature a minimum of 4 nights or less. Also, the variables that will be used in the analysis are selected, so to only have relevant variables left to make the analysis more concise and clear.
 
 ```{r filtering, echo=FALSE, message=FALSE}
 # Filter the AirBnB data so that it only includes observations less than or equal to 4
