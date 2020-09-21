@@ -45,9 +45,9 @@ library(openintro)
 
 At the last board meeting of Omega Group Plc., the headquarters of a large multinational company, the issue was raised that women were being discriminated in the company, in the sense that the salaries were not the same for male and female executives. A quick analysis of a sample of 50 employees (of which 24 men and 26 women) revealed that the average salary for men was about 8,700 higher than for women. This seemed like a considerable difference, so it was decided that a further analysis of the company salaries was warranted. 
 
-You are asked to carry out the analysis. The objective is to find out whether there is indeed a significant difference between the salaries of men and women, and whether the difference is due to discrimination or whether it is based on another, possibly valid, determining factor. 
+I am here to carry out the analysis. The objective is to find out whether there is indeed a significant difference between the salaries of men and women, and whether the difference is due to discrimination or whether it is based on another, possibly valid, determining factor. 
 
-## Loading the data
+# Loading the data
 
 
 ```{r load_omega_data}
@@ -55,7 +55,7 @@ omega <- read_csv("C:\\Users\\86188\\Documents\\LBS\\applied statistics with R\\
 glimpse(omega) # examine the data frame
 ```
 
-## Relationship Salary - Gender ?
+# Relationship Salary - Gender ?
 
 
 .	Confidence intervals
@@ -116,7 +116,7 @@ salary_gender_null %>%
 
  We can refuse the null hypothesis. The mean salaries of male and female are significantly different.
 
-## Relationship Experience - Gender?
+# Relationship Experience - Gender?
 
 At the board meeting, someone raised the issue that there was indeed a substantial difference between male and female salaries, but that this was attributable to other reasons such as differences in experience. A questionnaire send out to the 50 executives in the sample reveals that the average experience of the men is approximately 21 years, whereas the women only have about 7 years experience on average (see table below).
 
@@ -150,11 +150,9 @@ experience_gender_null %>%
   get_p_value(obs_stat = experience_diff, direction = "two_sided")
 ```
 
-## Relationship Salary - Experience ?
+# Relationship Salary - Experience ?
 
 Someone at the meeting argues that clearly, a more thorough analysis of the relationship between salary and experience is required before any conclusion can be drawn about whether there is any gender-based salary discrimination in the company.
-
-Analyse the relationship between salary and experience. Draw a scatterplot to visually inspect the data
 
 
 ```{r, salary_exp_scatter}
@@ -169,7 +167,7 @@ ggplot(omega, aes(experience, salary)) +
 ```
 
 
-## Check correlations between the data
+# Check correlations between the data
 Use `GGally:ggpairs()` to create a scatterplot and correlation matrix. Essentially, we change the order our variables will appear in and have the dependent variable (Y), salary, as last in our list. We then pipe the dataframe to `ggpairs()` with `aes` arguments to colour by `gender` and make ths plots somewhat transparent (`alpha  = 0.3`).
 
 ```{r, ggpairs}
